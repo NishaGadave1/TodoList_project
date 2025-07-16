@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { v4 as uuidv4 } from 'uuid';
+import "./Todo.css";
 export default function Todo()
 {
 let[todo, setTodo] = useState([{task : "demo task" , id : uuidv4()}]);
@@ -51,23 +52,28 @@ let[newTodo, setNewTodo] = useState("");
 
     return(
         <>
-           <input placeholder="Add-a-task" value={newTodo} onChange={handleChange}/>
+        <div className="mainDiv">
+           <input placeholder="Add-a-task" value={newTodo} onChange={handleChange}
+           className="inputCls"/>
            <br></br>
            <button onClick={AddTask}> Add task</button>
            <hr></hr>
-           <h3> To-do list </h3>
+           <h2> TODO LIST </h2>
            <ul>
             { todo.map((myTodo) => 
              (<li key={myTodo.id}>
               <span> {myTodo.task}</span>
-              <button onClick={()=>handleDelete(myTodo.id)}> Delete </button>
-              <button onClick={()=>uppercaseOne(myTodo.id)}> Uppercase One </button>
-
+              &nbsp;
+              <button onClick={()=>handleDelete(myTodo.id)} style={{backgroundColor : "lightblue" , color: "black"}}> Delete </button>
+              &nbsp;
+              <button onClick={()=>uppercaseOne(myTodo.id)} style={{backgroundColor : "lightblue" , color: "black"}}> Uppercase One </button>
+              <hr></hr>
             </li>)
             )
             }
            </ul>
-           <button onClick={uppercaseAll}> Uppercase All</button>
+           <button onClick={uppercaseAll} style={{backgroundColor : "lightgray" , color: "black"}}> Uppercase All</button>
+        </div>   
         </>
     )
 }
